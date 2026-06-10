@@ -250,3 +250,17 @@ tmpfs                               82M   12K   82M   1% /run/user/1000
 
 
 ```
+
+### Проверка проброса порта с хостовой машины
+```  
+dilyam@MacBook-Pro-Dilya-2 ~ % netstat -anv | grep 8080
+tcp46      0      0  *.62983                *.*                    LISTEN                 0            0  131072  131072         rapportd:980    00100 00000006 00000000000647a7 00000000 00080800      1      0 000000
+tcp46      0      0  *.62982                *.*                    LISTEN                 0            0  131072  131072         rapportd:980    00100 00000006 00000000000647a2 00000000 00080800      1      0 000000
+tcp4       0      0  *.8080                 *.*                    LISTEN                 0            0  131072  131072     VBoxHeadless:9356   00000 00000106 000000000005fa59 00000000 00000800      1      0 000000
+udp46      0      0  *.65489                *.*                                           0            0  786896    9216         sharingd:1020   00100 00000204 00000000000644fd 00000000 00080800      1      0 000000
+
+  
+dilyam@MacBook-Pro-Dilya-2 ~ % lsof -i :8080
+COMMAND    PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+VBoxHeadl 9356 dilyam   15u  IPv4 0xb9fa2bcce8371ecb      0t0  TCP *:http-alt (LISTEN)
+```
